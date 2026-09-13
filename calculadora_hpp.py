@@ -92,7 +92,7 @@ with tab_calculadora:
             st.write("El valor se encuentra dentro del rango de referencia biológico esperado.")
 
 # ==========================================
-# PESTAÑA 2: GUÍA DE PARACLÍNICOS (TABLA 4)
+# PESTAÑA 2: GUÍA DE PARACLÍNICOS
 # ==========================================
 with tab_guia_paraclinica:
     st.subheader("📋 Orientación Paraclínica según Causa Secundaria (Tabla 4)")
