@@ -175,7 +175,7 @@ st.write("Seleccione una causa secundaria para consultar sus características o 
 
 causas_secundarias = {
     "Ninguna / Evaluación General": "Seleccione una condición de la lista para ver la orientación clínica correspondiente.",
-    "Uso de Bifosfonatos": "El tratamiento previo o actual con antirreabsortivos (p. ej., alendronato, zoledronato) suprime fuertemente la remodelación ósea y reduce la FA circulante[cite: 1].
+    "Uso de Bifosfonatos": "El tratamiento previo o actual con antirreabsortivos (p. ej., alendronato, zoledronato) suprime fuertemente la remodelación ósea y reduce la FA circulante[cite: 1].",
     "Deficiencia de Zinc": "El zinc es un cofactor enzimático indispensable para la estructura y función de la fosfatasa alcalina. Su deficiencia disminuye la actividad sintética de la enzima[cite: 1].",
     "Deficiencia de Magnesio": "El magnesio es un cofactor esencial para la activación catalítica de la TNSALP. Niveles séricos bajos de Mg reducen la lectura analítica de la FA[cite: 1].",
     "Intoxicación por Vitamina D": "Niveles muy elevados de vitamina D o hipercalcemia severa pueden generar supresión de la remodelación ósea y disminución secundaria de la FA[cite: 1].",
