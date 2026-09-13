@@ -13,7 +13,7 @@ st.warning("""
 Esta aplicación es una herramienta de apoyo y consulta diseñada **exclusivamente para uso por personal médico y profesional de la salud especializado**. 
 
 * No constituye una guía de auto-diagnóstico ni sustituye el criterio médico individualizado.
-* Los resultados deben correlacionarse con el cuadro clínico, la historia del paciente y los rangos de referencia analíticos del laboratorio local[cite: 1].
+* Los resultados deben correlacionarse con el cuadro clínico, la historia del paciente y los rangos de referencia analíticos del laboratorio local.
 """)
 
 st.title("🩺 Calculadora de Fosfatasa Alcalina (FA)")
@@ -21,7 +21,7 @@ st.caption("🔒 **100% Anónimo:** Esta herramienta no almacena ni transmite ni
 
 st.markdown("""
 Esta herramienta evalúa si el nivel de Fosfatasa Alcalina (FA) en sangre está **anormalmente bajo** 
-para la edad y sexo del paciente, lo cual es un criterio bioquímico clave para la sospecha de **Hipofosfatasia (HPP)**[cite: 1].
+para la edad y sexo del paciente, lo cual es un criterio bioquímico clave para la sospecha de **Hipofosfatasia (HPP)**.
 """)
 
 st.divider()
@@ -66,22 +66,29 @@ if st.button("Evaluar Resultado", type="primary"):
     fa_min, fa_max = obtener_rango_fa(edad_valor, edad_unidad, sexo)
     
     st.subheader("Resultado de la Evaluación")
-    st.info(f"**Rango de referencia esperado:** {fa_min} - {fa_max} IU/L (para {sexo.lower()}, {edad_valor} {edad_unidad.lower()})[cite: 1]")
+    st.info(f"**Rango de referencia esperado:** {fa_min} - {fa_max} IU/L (para {sexo.lower()}, {edad_valor} {edad_unidad.lower()})")
     
     if fa_valor < fa_min:
         st.error(f"🔴 **VALOR ANORMALMENTE BAJO:** {fa_valor} IU/L")
-        st.markdown(f"""
+        st.markdown("""
         **Atención clínica:**
-        * Se requiere confirmar con al menos **dos mediciones distintas** de FA persistentemente bajas[cite: 1].
-        * Se recomienda descartar otras causas secundarias de FA baja (ej. uso de bifosfonatos, deficiencia de zinc/magnesio, hipotiroidismo, etc.)[cite: 1].
-        * Evaluar presencia de criterios mayores/menores de **Hipofosfatasia (HPP)**[cite: 1].
+        * Se requiere confirmar con al menos **dos mediciones distintas** de FA persistentemente bajas.
+        * Se recomienda descartar otras causas secundarias de FA baja (ej. uso de bifosfonatos, deficiencia de zinc/magnesio, hipotiroidismo, etc.).
+        * Evaluar presencia de criterios mayores/menores de **Hipofosfatasia (HPP)**.
         """)
     elif fa_valor > fa_max:
         st.warning(f"🟡 **VALOR ELEVADO:** {fa_valor} IU/L")
-        st.write("El valor se encuentra por encima del límite superior ajustado para la edad y sexo[cite: 1].")
+        st.write("El valor se encuentra por encima del límite superior ajustado para la edad y sexo.")
     else:
         st.success(f"🟢 **VALOR NORMAL:** {fa_valor} IU/L")
-        st.write("El valor se encuentra dentro del rango de referencia biológico esperado[cite: 1].")
+        st.write("El valor se encuentra dentro del rango de referencia biológico esperado.")
 
 st.divider()
-st.caption("⚠️ **Aviso legal:** Herramienta reservada estrictamente a profesionales de la salud capacitados para la interpretación clínica de pruebas de laboratorio[cite: 1].")
+
+# Sección de Referencia Bibliográfica
+st.markdown("""
+**Referencia de Criterios y Rangos de Referencia:**
+* *Diagnosis, treatment, and follow-up of patients with hypophosphatasia.* **Endocrine**, 87(2), 400-419 (2025). DOI: [10.1007/s12020-024-04054-1](https://doi.org/10.1007/s12020-024-04054-1)
+""")
+
+st.caption("⚠️ **Aviso legal:** Herramienta reservada estrictamente a profesionales de la salud capacitados para la interpretación clínica de pruebas de laboratorio.")
