@@ -10,7 +10,7 @@ st.set_page_config(
 st.warning("""
 **⚠️ ADVERTENCIA DE USO PROFESIONAL**
 
-Esta aplicación es una herramienta de apoyo y consulta diseñada **exclusivamente para el uso del personal médico y del profesional de la salud especializado**. 
+Esta aplicación es una herramienta de apoyo y consulta diseñada **exclusivamente para el personal médico y el profesional de la salud especializado**. 
 
 * No constituye una guía de autodiagnóstico ni sustituye el criterio médico individualizado.
 * Los resultados deben correlacionarse con el cuadro clínico, la historia clínica del paciente y los rangos de referencia analíticos del laboratorio local.
@@ -95,7 +95,7 @@ with tab_calculadora:
 # PESTAÑA 2: GUÍA DE PARACLÍNICOS
 # ==========================================
 with tab_guia_paraclinica:
-    st.subheader("📋 Orientación Paraclínica según Causa Secundaria (Tabla 4)")
+    st.subheader("📋 Orientación Paraclínica según Causa Secundaria")
     st.write("Seleccione una condición sospechada para revisar el panel de estudios de laboratorio e imágenes recomendados:")
 
     estudios_causas = {
