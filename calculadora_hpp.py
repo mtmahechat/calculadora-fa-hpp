@@ -10,17 +10,17 @@ st.set_page_config(
 st.warning("""
 **⚠️ ADVERTENCIA DE USO PROFESIONAL**
 
-Esta aplicación es una herramienta de apoyo y consulta diseñada **exclusivamente para uso por personal médico y profesional de la salud especializado**. 
+Esta aplicación es una herramienta de apoyo y consulta diseñada **exclusivamente para el personal médico y los profesionales de la salud especializados**. 
 
-* No constituye una guía de auto-diagnóstico ni sustituye el criterio médico individualizado.
-* Los resultados deben correlacionarse con el cuadro clínico, la historia del paciente y los rangos de referencia analíticos del laboratorio local.
+* No constituye una guía de autodiagnóstico ni sustituye el criterio médico individualizado.
+* Los resultados deben correlacionarse con el cuadro clínico, la historia clínica del paciente y los rangos de referencia analíticos del laboratorio local.
 """)
 
-st.title("🩺 Calculadora de Fosfatasa Alcalina (FA)")
+st.title("🩺 Vigilancia de niveles de Fosfatasa Alcalina (FA)")
 st.caption("🔒 **100% Anónimo:** Esta herramienta no almacena ni transmite ningún dato del paciente.")
 
 st.markdown("""
-Esta herramienta evalúa si el nivel de Fosfatasa Alcalina (FA) en sangre está **anormalmente bajo** 
+Esta herramienta evalúa si el nivel de fosfatasa alcalina (FA) en sangre está **anormalmente bajo** 
 para la edad y sexo del paciente, lo cual es un criterio bioquímico clave para la sospecha de **Hipofosfatasia (HPP)**.
 """)
 
@@ -41,9 +41,9 @@ with col2:
 def obtener_rango_fa(edad, unidad, sexo_biologico):
     dias = edad
     if unidad == "Meses":
-        dias = edad * 30.4375
+        días = edad * 30.4375
     elif unidad == "Años":
-        dias = edad * 365.25
+        días = edad * 365.25
 
     if dias <= 14:
         return 90, 273
@@ -132,7 +132,7 @@ causas_secundarias = {
 
     # Factores Preanalíticos y Errores
     "[LABORATORIO] Muestra con Anticoagulante EDTA u Oxalato": """Falso positivo analítico: El EDTA/oxalato quela los iones Mg y Zn de la muestra, anulando la medición enzimática.""",
-    "[LABORATORIO] Rangos de Referencia Inadecuados": """Uso de límites de referencia de adultos para evaluar a población pediátrica, o falta de ajuste específico por edad y sexo."""
+    "[LABORATORIO] Rangos de Referencia Inadecuados": """Uso de límites de referencia de adultos para evaluar a la población pediátrica, o falta de ajuste específico por edad y sexo."""
 }
 
 causa_seleccionada = st.selectbox("Seleccionar Condición / Causa Diferencial:", list(causas_secundarias.keys()))
@@ -148,4 +148,4 @@ st.markdown("""
 * *Diagnosis, treatment, and follow-up of patients with hypophosphatasia.* **Endocrine**, 87(2), 400-419 (2025). DOI: [10.1007/s12020-024-04054-1](https://doi.org/10.1007/s12020-024-04054-1)
 """)
 
-st.caption("⚠️ **Aviso legal:** Herramienta reservada estrictamente a profesionales de la salud capacitados para la interpretación clínica de pruebas de laboratorio.")
+st.caption("⚠️ **Aviso legal:** Herramienta estrictamente reservada para profesionales de la salud capacitados para la interpretación clínica de pruebas de laboratorio.")
