@@ -13,7 +13,7 @@ st.warning("""
 Esta aplicación es una herramienta de apoyo y consulta diseñada **exclusivamente para uso por personal médico y profesional de la salud especializado**. 
 
 * No constituye una guía de auto-diagnóstico ni sustituye el criterio médico individualizado.
-* Los resultados deben correlacionarse con el cuadro clínico, la historia del paciente y los rangos de referencia analíticos del laboratorio local.
+* Los resultados deben correlacionarse con el cuadro clínico, la historia del paciente y los rangos de referencia analíticos del laboratorio local[cite: 1].
 """)
 
 st.title("🩺 Calculadora de Fosfatasa Alcalina (FA)")
@@ -85,23 +85,38 @@ if st.button("Evaluar Resultado", type="primary"):
 
 st.divider()
 
-# --- DIAGNÓSTICO DIFERENCIAL DE CAUSAS SECUNDARIAS ---
-st.subheader("📋 Diagnósticos Diferenciales (Causas Secundarias de FA Baja)")
-st.write("Seleccione una causa secundaria para consultar sus características o descartarla durante la evaluación[cite: 1]:")
+# --- DIAGNÓSTICO DIFERENCIAL SEGÚN TABLA 4 DEL CONSENSO ---
+st.subheader("📋 Diagnósticos Diferenciales (Tabla 4: Causas de FA Baja)")
+st.write("Seleccione una causa para revisar la orientación según la clasificación del consenso[cite: 1]:")
 
 causas_secundarias = {
     "Ninguna / Evaluación General": """Seleccione una condición de la lista para ver la orientación clínica correspondiente.""",
-    "Uso de Bifosfonatos": """El tratamiento previo o actual con anti-resortivos (ej. alendronato, zoledronato) suprime fuertemente la remodelación ósea y reduce la FA circulante[cite: 1].""",
-    "Deficiencia de Zinc": """El zinc es un cofactor enzimático indispensable para la estructura y función de la fosfatasa alcalina. Su deficiencia disminuye la actividad sintética de la enzima[cite: 1].""",
-    "Deficiencia de Magnesio": """El magnesio es un cofactor esencial para la activación catalítica de la TNSALP. Niveles séricos bajos de Mg reducen la lectura analítica de la FA[cite: 1].""",
-    "Intoxicación por Vitamina D": """Niveles muy elevados de vitamina D o hipercalcemia severa pueden generar supresión de la remodelación ósea y disminución secundaria de la FA[cite: 1].""",
-    "Hipotiroidismo Severo": """El déficit de hormonas tiroideas disminuye la tasa general de recambio óseo y la síntesis de FA por parte de los osteoblastos[cite: 1].""",
-    "Anemia Severa / Enfermedad Celíaca": """La malabsorción intestinal crónica o estados de desnutrición severa limitan la disponibilidad de cofactores esenciales para la enzima[cite: 1].""",
-    "Síndrome de Cushing": """El exceso de glucocorticoides endógenos o exógenos inhíbe la función osteoblástica y la expresión de la fosfatasa alcalina[cite: 1].""",
-    "Transfusión Sanguínea Masiva": """El citrato utilizado como anticoagulante en los hemoderivados quela los cationes divalentes (Mg y Zn) necesarios para la lectura de la FA."""
+    
+    # Persistentemente bajas
+    "[PERSISTENTE] Hipofosfatasia (HPP)": """Causada por variantes genéticas en el gen ALPL. Cursa con acumulación de sustratos (PPi, PLP, PEA) y síntomas esqueléticos/dentales[cite: 1].""",
+    "[PERSISTENTE] Hipofosfatasemia Familiar Benigna": """Condición hereditaria benigna con valores de FA reducidos pero sin compromiso óseo ni dental sintomático[cite: 1].""",
+    "[PERSISTENTE] Displasia Cleidocraneal / Artropatía de Mseleni": """Trastornos genéticos que pueden cursar con niveles reducidos de FA de forma persistente[cite: 1].""",
+    
+    # Temporalmente bajas - Nutricionales / Cofactores
+    "[TEMPORAL] Deficiencia de Zinc o Magnesio": """El zinc y magnesio son cofactores esenciales de la TNSALP. Su déficit disminuye la lectura analítica enzimática[cite: 1].""",
+    "[TEMPORAL] Deficiencia de Vitamina C / Inanición": """Estados desnutricionales severos o escorbuto reducen la tasa de síntesis de FA[cite: 1].""",
+    "[TEMPORAL] Intoxicación por Vitamina D / Leche-Álcali": """La hipercalcemia severa o exceso de vitamina D pueden suprimir la remodelación ósea y la actividad de FA[cite: 1].""",
+    
+    # Temporalmente bajas - Endocrinopatías
+    "[TEMPORAL] Hipotiroidismo Severo": """El déficit de hormonas tiroideas disminuye el recambio óseo y la expresión osteoblástica de la FA[cite: 1].""",
+    "[TEMPORAL] Síndrome de Cushing": """El exceso de glucocorticoides inhíbe la función de los osteoblastos y la formación ósea[cite: 1].""",
+    
+    # Temporalmente bajas - Fármacos
+    "[TEMPORAL] Bifosfonatos / Denosumab": """Los tratamientos antiresortivos suprimen fuertemente la remodelación ósea, disminuyendo la FA circulante[cite: 1].""",
+    "[TEMPORAL] Glucocorticoides / Quimioterapia / Tamoxifeno": """Generan supresión farmacológica transitoria de la función osteoblástica[cite: 1].""",
+    
+    # Temporalmente bajas - Hematológicas / Preanalíticas
+    "[TEMPORAL] Anemia Perniciosa / Mieloma Múltiple": """Alteraciones sistémicas o medulares severas que pueden reducir temporalmente la FA[cite: 1].""",
+    "[TEMPORAL] Transfusión Masiva / Anticoagulante EDTA": """El citrato o EDTA chelantes quela el Mg y Zn de la muestra, generando un falso positivo preanalítico de FA baja[cite: 1].""",
+    "[TEMPORAL] Enfermedad Celíaca / Enfermedad de Wilson": """Enfermedades sistémicas o de malabsorción crónica que limitan los micronutrientes necesarios para la enzima[cite: 1]."""
 }
 
-causa_seleccionada = st.selectbox("Seleccionar Condición / Causa Secundaria:", list(causas_secundarias.keys()))
+causa_seleccionada = st.selectbox("Seleccionar Condición / Causa Diferencial:", list(causas_secundarias.keys()))
 
 if causa_seleccionada != "Ninguna / Evaluación General":
     st.info(f"**Orientación sobre {causa_seleccionada}:**\n\n{causas_secundarias[causa_seleccionada]}")
